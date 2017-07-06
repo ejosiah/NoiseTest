@@ -31,8 +31,8 @@ public:
 		
 		light[0].on = true;
 		light[0].position = { 1.0, 1.25, 1.25f , 1 };
-	//	texture = new NoiseTex3D();
-	//	_shader.sendUniform1ui("noise", texture->id());
+		texture = new NoiseTex3D();
+		_shader.sendUniform1ui("noise", texture->id());
 		_shader.sendUniform1f("line.width", 0.05);
 		_shader.sendUniform4f("line.color", 0, 0, 0, 1);
 		_shader.sendUniform1i("wireframe", false);
@@ -61,7 +61,7 @@ public:
 		camera.lookAt({ 1.0, 1.25, 0.5f }, vec3(0), { 0, 1, 0 });
 		mat4 mat = mat4(1); // rotate(mat4(1), radians(angle), { 0, 1, 0 });
 	//	cam.model = mat;
-		_shader.send(camera, mat);
+		_shader.sendComputed(camera, mat);
 	//	cam.model = rotate(mat4(1), radians(angle), { 0, 1, 0 });
 		teapot->draw(_shader);
 		//sphere->draw(shader);
